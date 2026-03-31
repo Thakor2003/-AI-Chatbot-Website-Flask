@@ -5,14 +5,20 @@ app = Flask(__name__)
 def chatbot_response(user_input):
     user_input = user_input.lower()
 
-    if "hello" in user_input:
-        return "Hello 👋"
-    elif "how are you" in user_input:
-        return "I'm fine! How can I help you?"
-    elif "bye" in user_input:
-        return "Goodbye 😊"
-    else:
-        return "Sorry, I didn't understand."
+    responses = {
+        "hello": "Hello 👋",
+        "hi": "Hi there 😊",
+        "how are you": "I'm fine 😄 What about you?",
+        "your name": "I am your chatbot 🤖",
+        "bye": "Goodbye 👋",
+        "help": "You can ask me basic questions!"
+    }
+
+    for key in responses:
+        if key in user_input:
+            return responses[key]
+
+    return "Hmm 🤔 I don't understand. Try something else!"
 
 @app.route("/")
 def home():
